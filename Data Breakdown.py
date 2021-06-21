@@ -6,7 +6,7 @@ DIGITS = 3 # how many digits to be shown while calculating averages and %age
 
 sheet = xw.Book('test.xlsx').sheets[0]  #Name of the excel sheet having the data
 
-arr = sheet.range('A2:A1797').value     # The range of the data column
+arr = sheet.range('A2:A99').value     # The range of the data column
 
 pure = []
 Sum = 0
@@ -31,10 +31,12 @@ for i in arr:
 pure.sort()
 perc = {}
 for i in pure:
+
+    
     if i in perc.keys():
         perc[i]+=1
     else:
-        perc[i] = 0
+        perc[i] = 1
 data = []
 keys = list(perc.keys())
 
@@ -42,6 +44,7 @@ Max = keys[0]
 Min = keys[0]
 print("DETAILED BREAKDOWN")
 print()
+
 for i in perc:
     if perc[i]>perc[Max]:
         Max = i
@@ -95,3 +98,4 @@ print()
 
 print('Maximum %age at ',Max,' With %age',str((perc[Max]/count)*100)[:1+DIGITS])
 print('Minimum %age at ',Min,' With %age',str((perc[Min]/count)*100)[:1+DIGITS])
+
